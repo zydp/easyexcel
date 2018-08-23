@@ -87,9 +87,9 @@ A PHP extension based on libxl, read-write .xls & .xlsx
 	ReadStr                //读取字符串                       参数：row, col                 返回：str
 	WriteNum               //写入数字                         参数：row, col, num            返回：bool
 	WriteStr               //写入字符串                       参数：row, col, str            返回：bool
-	IsFormula              //该单元格是否是工式                参数：row, col                 返回：bool
-	ReadFormula            //读取工式                         参数：row, col                 返回：str
-	WriteFormula           //写入工式                         参数：row, col, str            返回：bool
+	IsFormula              //该单元格是否是公式                参数：row, col                 返回：bool
+	ReadFormula            //读取公式                         参数：row, col                 返回：str
+	WriteFormula           //写入公式                         参数：row, col, str            返回：bool
 	SaveToFile             //保存到文件                       参数：s文件名                   返回：bool
 	
 # CellType
