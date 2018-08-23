@@ -2,6 +2,10 @@
 A PHP extension based on libxl, read-write .xls & .xlsx
 
 # build
+    git clone http://github.com/zydp/easyexcel.git
+    
+    cd easyexcel
+    
     phpize
   
     ./configure  //can add the php inlcude dir use ./configure --help to get it
