@@ -21,7 +21,7 @@ A PHP extension based on libxl, read-write .xls & .xlsx
     use php -m to view the loaded module, make sure you find the module easyexcel
 
 # use example
-# traversal xlsx
+# read
      $e = new easyexcel("xlsx");
      $e->LoadFile("example.xlsx");
     
