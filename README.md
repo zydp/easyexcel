@@ -72,3 +72,32 @@ A PHP extension based on libxl, read-write .xls & .xlsx
 		}
 	}
 	$e2->SaveToFile("example3.xlsx");
+	
+# API list
+	LoadFile               //加载一个文件                      参数：文件名                    返回：bool
+	SheetCount             //返回sheet总数                     参数：无                       返回：int
+	SheetSwitch            //切换sheet                        参数：sheet下标                 返回：bool
+	AddSheetAndSwitchTo    //添加一张新sheet，并切换到该sheet   参数：sheet名                  返回：bool
+	GetSheetNameByIndex    //跟据序号获取sheet名，序号从0开始   参数：sheet下标                 返回：str
+	SetSheetNameByIndex    //跟据序号设置sheet名，序号从0开始   参数：sheet下标，sheet新名      返回：bool
+	GetTotalRow            //获取当前sheet的总行数             参数：无                       返回：int
+	GetTotalCol            //获取当前sheet总列数               参数：无                       返回：int
+	GetCellType            //获取单元格数据类型                参数：row, col                 返回：CellType
+	ReadNum                //读取数字                         参数：row, col                 返回：int
+	ReadStr                //读取字符串                       参数：row, col                 返回：str
+	WriteNum               //写入数字                         参数：row, col, num            返回：bool
+	WriteStr               //写入字符串                       参数：row, col, str            返回：bool
+	IsFormula              //该单元格是否是工式                参数：row, col                 返回：bool
+	ReadFormula            //读取工式                         参数：row, col                 返回：str
+	WriteFormula           //写入工式                         参数：row, col, str            返回：bool
+	SaveToFile             //保存到文件                       参数：s文件名                   返回：bool
+	
+# CellType
+	typedef enum{
+		CELLTYPE_EMPTY,        //0
+		CELLTYPE_NUMBER,       //1
+		CELLTYPE_STRING,       //2
+		CELLTYPE_BOOLEAN,      //3
+		CELLTYPE_BLANK,        //4
+		CELLTYPE_ERROR         //5
+	}CellType;
