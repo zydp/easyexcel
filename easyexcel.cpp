@@ -71,6 +71,7 @@ PHP_METHOD(easyexcel, AddSheetAndSwitchTo) {
 	objval->cursheet = objval->handle->addSheet(sheet_name);
 	RETURN_BOOL(objval->cursheet!=NULL);
 }
+
 PHP_METHOD(easyexcel, GetSheetNameByIndex) {
 	long sheet_index;
 	if (zend_parse_parameters_throw(ZEND_NUM_ARGS() TSRMLS_CC, "l", &sheet_index) == FAILURE) {
@@ -236,6 +237,154 @@ PHP_METHOD(easyexcel, IsDate) {
 	RETURN_FALSE
 }
 
+PHP_METHOD(easyexcel, SetMerge) {
+	long rowFirst, rowLast, colFirst, colLast;
+	if (zend_parse_parameters_throw(ZEND_NUM_ARGS() TSRMLS_CC, "llll", &rowFirst, &rowLast, &colFirst, &colLast) == FAILURE) {
+		RETURN_FALSE;
+	}
+	easyexcel_easy_object *objval = easyexcel_easy_from_zend_object(Z_OBJ_P(getThis()));
+	if(objval->cursheet!=NULL){
+		RETURN_BOOL(objval->cursheet->setMerge(rowFirst, rowLast, colFirst, colLast));
+	}
+	RETURN_FALSE
+}
+
+PHP_METHOD(easyexcel, DelMerge) {
+	long row, col;
+	if (zend_parse_parameters_throw(ZEND_NUM_ARGS() TSRMLS_CC, "ll", &row, &col) == FAILURE) {
+		RETURN_FALSE;
+	}
+	easyexcel_easy_object *objval = easyexcel_easy_from_zend_object(Z_OBJ_P(getThis()));
+	if(objval->cursheet!=NULL){
+		RETURN_BOOL(objval->cursheet->delMerge(row, col));
+	}
+	RETURN_FALSE
+}
+
+PHP_METHOD(easyexcel, InsertRow) {
+	long rowFirst, rowLast;
+	if (zend_parse_parameters_throw(ZEND_NUM_ARGS() TSRMLS_CC, "ll", &rowFirst, &rowLast) == FAILURE) {
+		RETURN_FALSE;
+	}
+	easyexcel_easy_object *objval = easyexcel_easy_from_zend_object(Z_OBJ_P(getThis()));
+	if(objval->cursheet!=NULL){
+		RETURN_BOOL(objval->cursheet->insertRow(rowFirst, rowLast));
+	}
+	RETURN_FALSE
+}
+
+PHP_METHOD(easyexcel, DelRow) {
+	long rowFirst, rowLast;
+	if (zend_parse_parameters_throw(ZEND_NUM_ARGS() TSRMLS_CC, "ll", &rowFirst, &rowLast) == FAILURE) {
+		RETURN_FALSE;
+	}
+	easyexcel_easy_object *objval = easyexcel_easy_from_zend_object(Z_OBJ_P(getThis()));
+	if(objval->cursheet!=NULL){
+		RETURN_BOOL(objval->cursheet->removeRow(rowFirst, rowLast));
+	}
+	RETURN_FALSE
+}
+
+PHP_METHOD(easyexcel, InsertCol) {
+	long colFirst, colLast;
+	if (zend_parse_parameters_throw(ZEND_NUM_ARGS() TSRMLS_CC, "ll", &colFirst, &colLast) == FAILURE) {
+		RETURN_FALSE;
+	}
+	easyexcel_easy_object *objval = easyexcel_easy_from_zend_object(Z_OBJ_P(getThis()));
+	if(objval->cursheet!=NULL){
+		RETURN_BOOL(objval->cursheet->insertCol(colFirst, colLast));
+	}
+	RETURN_FALSE
+}
+
+PHP_METHOD(easyexcel, DelCol) {
+	long colFirst, colLast;
+	if (zend_parse_parameters_throw(ZEND_NUM_ARGS() TSRMLS_CC, "ll", &colFirst, &colLast) == FAILURE) {
+		RETURN_FALSE;
+	}
+	easyexcel_easy_object *objval = easyexcel_easy_from_zend_object(Z_OBJ_P(getThis()));
+	if(objval->cursheet!=NULL){
+		RETURN_BOOL(objval->cursheet->removeCol(colFirst, colLast));
+	}
+	RETURN_FALSE
+}
+
+PHP_METHOD(easyexcel, CopyCell) {
+	long rowSrc, colSrc, rowDst, colDst;
+	if (zend_parse_parameters_throw(ZEND_NUM_ARGS() TSRMLS_CC, "llll", &rowSrc, &colSrc, &rowDst, &colDst) == FAILURE) {
+		RETURN_FALSE;
+	}
+	easyexcel_easy_object *objval = easyexcel_easy_from_zend_object(Z_OBJ_P(getThis()));
+	if(objval->cursheet!=NULL){
+		RETURN_BOOL(objval->cursheet->copyCell(rowSrc, colSrc, rowDst, colDst));
+	}
+	RETURN_FALSE
+}
+
+PHP_METHOD(easyexcel, ClearCell) {
+	long rowFirst, rowLast, colFirst, colLast;
+	if (zend_parse_parameters_throw(ZEND_NUM_ARGS() TSRMLS_CC, "llll", &rowFirst, &rowLast, &colFirst, &colLast) == FAILURE) {
+		RETURN_FALSE;
+	}
+	easyexcel_easy_object *objval = easyexcel_easy_from_zend_object(Z_OBJ_P(getThis()));
+	if(objval->cursheet!=NULL){
+		RETURN_BOOL(objval->cursheet->clear(rowFirst, rowLast, colFirst, colLast));
+	}
+	RETURN_FALSE
+}
+
+PHP_METHOD(easyexcel, SetRowHeigh) {
+	long row;
+	double heigh;
+	if (zend_parse_parameters_throw(ZEND_NUM_ARGS() TSRMLS_CC, "ld", &row, &heigh) == FAILURE) {
+		RETURN_FALSE;
+	}
+	easyexcel_easy_object *objval = easyexcel_easy_from_zend_object(Z_OBJ_P(getThis()));
+	if(objval->cursheet!=NULL){
+		RETURN_BOOL(objval->cursheet->setRow(row, heigh));
+	}
+	RETURN_FALSE
+}
+
+PHP_METHOD(easyexcel, SetColWidth) {
+	long colFirst, colLast;
+	double width;
+	if (zend_parse_parameters_throw(ZEND_NUM_ARGS() TSRMLS_CC, "lld", &colFirst, &colLast, &width) == FAILURE) {
+		RETURN_FALSE;
+	}
+	easyexcel_easy_object *objval = easyexcel_easy_from_zend_object(Z_OBJ_P(getThis()));
+	if(objval->cursheet!=NULL){
+		RETURN_BOOL(objval->cursheet->setCol(colFirst, colLast, width));
+	}
+	RETURN_FALSE
+}
+
+PHP_METHOD(easyexcel, RowHide) {
+	long row;
+	bool hide;
+	if (zend_parse_parameters_throw(ZEND_NUM_ARGS() TSRMLS_CC, "lb", &row, &hide) == FAILURE) {
+		RETURN_FALSE;
+	}
+	easyexcel_easy_object *objval = easyexcel_easy_from_zend_object(Z_OBJ_P(getThis()));
+	if(objval->cursheet!=NULL){
+		RETURN_BOOL(objval->cursheet->setRowHidden(row, hide));
+	}
+	RETURN_FALSE
+}
+
+PHP_METHOD(easyexcel, ColHide) {
+	long col;
+	bool hide;
+	if (zend_parse_parameters_throw(ZEND_NUM_ARGS() TSRMLS_CC, "lb", &col, &hide) == FAILURE) {
+		RETURN_FALSE;
+	}
+	easyexcel_easy_object *objval = easyexcel_easy_from_zend_object(Z_OBJ_P(getThis()));
+	if(objval->cursheet!=NULL){
+		RETURN_BOOL(objval->cursheet->setColHidden(col, hide));
+	}
+	RETURN_FALSE
+}
+
 PHP_METHOD(easyexcel, SaveToFile) {
 	char *sheet_name = NULL;
 	long sheet_name_len;
@@ -284,6 +433,18 @@ static zend_function_entry easyexcel_easy_methods[] = {
 	PHP_ME(easyexcel, ReadFormula, NULL, ZEND_ACC_PUBLIC)
 	PHP_ME(easyexcel, WriteFormula, NULL, ZEND_ACC_PUBLIC)
 	//PHP_ME(easyexcel, IsDate, NULL, ZEND_ACC_PUBLIC)
+	PHP_ME(easyexcel, SetMerge, NULL, ZEND_ACC_PUBLIC)
+	PHP_ME(easyexcel, DelMerge, NULL, ZEND_ACC_PUBLIC)
+	PHP_ME(easyexcel, InsertRow, NULL, ZEND_ACC_PUBLIC)
+	PHP_ME(easyexcel, DelRow, NULL, ZEND_ACC_PUBLIC)
+	PHP_ME(easyexcel, InsertCol, NULL, ZEND_ACC_PUBLIC)
+	PHP_ME(easyexcel, DelCol, NULL, ZEND_ACC_PUBLIC)
+	PHP_ME(easyexcel, CopyCell, NULL, ZEND_ACC_PUBLIC)
+	PHP_ME(easyexcel, ClearCell, NULL, ZEND_ACC_PUBLIC)
+	PHP_ME(easyexcel, SetRowHeigh, NULL, ZEND_ACC_PUBLIC)
+	PHP_ME(easyexcel, SetColWidth, NULL, ZEND_ACC_PUBLIC)
+	PHP_ME(easyexcel, RowHide, NULL, ZEND_ACC_PUBLIC)
+	PHP_ME(easyexcel, ColHide, NULL, ZEND_ACC_PUBLIC)
 	PHP_ME(easyexcel, SaveToFile, NULL, ZEND_ACC_PUBLIC)
 	PHP_FE_END
 };
