@@ -1,5 +1,5 @@
 # easyexcel
-A PHP extension based on libxl, read-write .xls & .xlsx
+A PHP extension for working with excel. xls&xlsx 
 
 # build
     git clone http://github.com/zydp/easyexcel.git
