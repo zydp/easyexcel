@@ -238,8 +238,8 @@ PHP_METHOD(easyexcel, IsDate) {
 }
 
 PHP_METHOD(easyexcel, SetMerge) {
-	long rowFirst, rowLast, colFirst, colLast;
-	if (zend_parse_parameters_throw(ZEND_NUM_ARGS() TSRMLS_CC, "llll", &rowFirst, &rowLast, &colFirst, &colLast) == FAILURE) {
+	long rowFirst, colFirst, rowLast, colLast;
+	if (zend_parse_parameters_throw(ZEND_NUM_ARGS() TSRMLS_CC, "llll", &rowFirst, &colFirst, &rowLast, &colLast) == FAILURE) {
 		RETURN_FALSE;
 	}
 	easyexcel_easy_object *objval = easyexcel_easy_from_zend_object(Z_OBJ_P(getThis()));
@@ -322,8 +322,8 @@ PHP_METHOD(easyexcel, CopyCell) {
 }
 
 PHP_METHOD(easyexcel, ClearCell) {
-	long rowFirst, rowLast, colFirst, colLast;
-	if (zend_parse_parameters_throw(ZEND_NUM_ARGS() TSRMLS_CC, "llll", &rowFirst, &rowLast, &colFirst, &colLast) == FAILURE) {
+	long rowFirst, colFirst, rowLast, colLast;
+	if (zend_parse_parameters_throw(ZEND_NUM_ARGS() TSRMLS_CC, "llll", &rowFirst, &colFirst, &rowLast, &colLast) == FAILURE) {
 		RETURN_FALSE;
 	}
 	easyexcel_easy_object *objval = easyexcel_easy_from_zend_object(Z_OBJ_P(getThis()));
